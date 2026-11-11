@@ -14,7 +14,7 @@ namespace SeleniumTests
 
         private const string AddAndRemoveElements = "https://the-internet.herokuapp.com/add_remove_elements/";
 
-        private const string CheckboxesPage = "http://the-internet.herokuapp.com/checkboxes";
+        private const string CheckboxesPage = "https://the-internet.herokuapp.com/checkboxes";
 
         private const string DropdownPage = "https://the-internet.herokuapp.com/dropdown";
 
