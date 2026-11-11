@@ -306,6 +306,9 @@ namespace SeleniumTests
             var logs = driver.Manage().Logs.GetLog(LogType.Browser);
 
             Assert.That(logs.Any(log => log.Level == LogLevel.Severe), Is.True);
+
+            var error = logs.FirstOrDefault(log => log.Level == LogLevel.Severe);
+            Assert.That(error!.Message, Does.Contain("reading 'xyz'"));
         }
 
         [Test]
