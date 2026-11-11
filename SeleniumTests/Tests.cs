@@ -96,7 +96,7 @@ namespace SeleniumTests
         [TestCase("301")]
         [TestCase("404")]
         [TestCase("500")]
-        public void StatusCodes(string linkTextForStatusCodes)
+        public async Task StatusCodes(string linkTextForStatusCodes)
         {
             driver.Navigate().GoToUrl(StatusCodesPage);
             driver.FindElement(By.LinkText(linkTextForStatusCodes)).Click();
@@ -105,6 +105,10 @@ namespace SeleniumTests
             var expectedPageText = $"This page returned a {linkTextForStatusCodes} status code.";
 
             Assert.That(paragraph.Text, Does.Contain(expectedPageText));
+
+            var httpclient = new HttpClient();
+            var response = await httpclient.GetAsync(driver.Url);
+            Assert.That(Convert.ToInt32(response.StatusCode), Is.EqualTo(Convert.ToInt32(linkTextForStatusCodes)));
         }
 
         [Test]
